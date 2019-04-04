@@ -1,0 +1,25 @@
+jobs:
+  build_linux_python2.7:
+    working_directory: ~/test
+    machine: true
+    environment:
+      - CONFIG: "linux_python2.7"
+    steps:
+      - checkout
+      - run:
+          name: Fast finish outdated PRs and merge PRs
+          command: |
+            pip install -r requirements.txt
+      - run:
+          name: Build docker image
+          command: docker build -t pcawg-bwa-mem-workflow:ci .
+      - run:
+              command: cwltool Dockstore_ci.cwl Dockstore_cwl.json
+              no_output_timeout: 2h
+
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build_linux_python2.7
