@@ -16,7 +16,7 @@ dct:contributor:
 
 requirements:
 - class: DockerRequirement
-  dockerPull: pcawg-bwa-mem-workflow:ci
+  dockerPull: pcawg-bwa-mem-workflow:2.6.8_1.2
 - class: InlineJavascriptRequirement
 
 inputs:
